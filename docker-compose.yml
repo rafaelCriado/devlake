@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  devlake-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    privileged: true
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+      DOCKER_HOST: tcp://localhost:2375/
+    volumes:
+      - certs-ca:/certs/ca
+      - certs-client:/certs/client
+
+volumes:
+  certs-ca:
+  certs-client:
